@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useViewportSize } from './useViewportSize'
 
 function App() {
   const [count, setCount] = useState(0)
+  const { height, width } = useViewportSize()
 
   return (
     <>
@@ -10,6 +12,7 @@ function App() {
           count is {count}
         </button>
       </div>
+      <div>Width: {width}, height: {height}</div>
     </>
   )
 }
