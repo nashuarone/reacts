@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState } from "react";
+import { useHover } from "./useHover";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const { hovered, ref } = useHover();
 
   return (
     <>
@@ -10,8 +12,11 @@ function App() {
           count is {count}
         </button>
       </div>
+      <div ref={ref}>
+        {hovered ? "На меня навели мышку" : "Наведи мышкой на меня"}
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
