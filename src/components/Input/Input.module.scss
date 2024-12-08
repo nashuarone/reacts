@@ -1,0 +1,57 @@
+.inputField {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+
+    &__inline {
+        display: inline;
+        border: none;
+    }
+
+    &__small {
+        height: 10px;
+    }
+
+    &__large {
+        height: 30px;
+    }
+
+    &__filled {
+        background-color: #ccc;
+    }
+
+    &__quadro {
+        border-radius: 0;
+    }
+
+    &__circle {
+        border-radius: 30px;
+    }
+
+    &__error {
+        border: 1px solid red;
+        color: red;
+    }
+
+    & > input {
+        border: none;
+        outline: none;
+        background: none;
+    }
+}
+
+.attention {
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.icon {
+    color: gray;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
