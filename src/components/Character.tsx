@@ -1,22 +1,35 @@
 import { useParams } from "react-router-dom";
-import { CharacterProps } from "../pages/types"
-import characters from '../assets/characters.json'
+import { CharacterProps } from "../pages/types";
+import { useGetOneElement } from "../hooks/useGetOneElement";
 
 export const Character = () => {
     const { id } = useParams();
-    const character: CharacterProps | undefined = characters.find(character => character.id === Number(id));
-    const { name, status, species, gender, image } = character || {};
+
+    const { loading, error, element } = useGetOneElement(
+        "character",
+        Number(id)
+    );
+
+    const { name, status, species, gender, image } = element as CharacterProps;
     return (
-        <div>
-            <div>
-                <img src={image} alt={name} />
-            </div>
-            <h2>{name}</h2>
-            <div>
-                <p>Status: {status}</p>
-                <p>Species: {species}</p>
-                <p>Gender: {gender}</p>
-            </div>
-        </div>
-    )
-}
+        <>
+            {loading ? (
+                <h1>Loading...</h1>
+            ) : error ? (
+                <h1>Error</h1>
+            ) : (
+                <div>
+                    <div>
+                        <img src={image} alt={name} />
+                    </div>
+                    <h2>{name}</h2>
+                    <div>
+                        <p>Status: {status}</p>
+                        <p>Species: {species}</p>
+                        <p>Gender: {gender}</p>
+                    </div>
+                </div>
+            )}
+        </>
+    );
+};

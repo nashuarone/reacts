@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 export const CategoriesLayout = () => {
@@ -14,7 +15,9 @@ export const CategoriesLayout = () => {
           <Link to="episodes">episodes</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
