@@ -1,18 +1,47 @@
+import { lazy } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Categories } from "./pages/Categories";
-import { NotFound } from "./pages/NotFound";
-import { Locations } from "./pages/Locations";
-import { Characters } from "./pages/Characters";
-import { CategoriesLayout } from "./layout/CategoriesLayout";
-import { Character } from "./components/Character";
-import { Location } from "./components/Location";
-import { Episodes } from "./pages/Episodes";
-import { Episode } from "./components/Episode";
 import { AuthProvider } from "./context/AuthProvider";
-import { AuthStatus } from "./components/AuthStatus";
-import { Login } from "./pages/Login";
-import { PrivateRoute } from "./components/PrivateRoute";
+import ErrorBoundary from "./ErrorBoundary";
+
+const Home = lazy(() => import('./pages/Home').then(module => ({
+  default: module.Home
+})));
+const Categories = lazy(() => import('./pages/Categories').then(module => ({
+  default: module.Categories
+})));
+const NotFound = lazy(() => import('./pages/NotFound').then(module => ({
+  default: module.NotFound
+})));
+const Locations = lazy(() => import('./pages/Locations').then(module => ({
+  default: module.Locations
+})));
+const Characters = lazy(() => import('./pages/Characters').then(module => ({
+  default: module.Characters
+})));
+const Episodes = lazy(() => import('./pages/Episodes').then(module => ({
+  default: module.Episodes
+})));
+const Login = lazy(() => import('./pages/Login').then(module => ({
+  default: module.Login
+})));
+const CategoriesLayout = lazy(() => import('./layout/CategoriesLayout').then(module => ({
+  default: module.CategoriesLayout
+})));
+const Character = lazy(() => import('./components/Character').then(module => ({
+  default: module.Character
+})));
+const Location = lazy(() => import('./components/Location').then(module => ({
+  default: module.Location
+})));
+const Episode = lazy(() => import('./components/Episode').then(module => ({
+  default: module.Episode
+})));
+const AuthStatus = lazy(() => import('./components/AuthStatus').then(module => ({
+  default: module.AuthStatus
+})));
+const PrivateRoute = lazy(() => import('./components/PrivateRoute').then(module => ({
+  default: module.PrivateRoute
+})));
 
 function App() {
   return (
@@ -32,18 +61,20 @@ function App() {
           <Route
             path="/categories"
             element={
-              <PrivateRoute>
-                <CategoriesLayout />
-              </PrivateRoute>
+              <ErrorBoundary>
+                <PrivateRoute>
+                  <CategoriesLayout />
+                </PrivateRoute>
+              </ErrorBoundary>
             }
           >
-            <Route index element={<Categories />} />
-            <Route path="characters" element={<Characters />} />
-            <Route path="characters/:id" element={<Character />} />
-            <Route path="locations" element={<Locations />} />
-            <Route path="locations/:id" element={<Location />} />
-            <Route path="episodes" element={<Episodes />} />
-            <Route path="episodes/:id" element={<Episode />} />
+              <Route index element={<Categories />} />
+              <Route path="characters" element={<Characters />} />
+              <Route path="characters/:id" element={<Character />} />
+              <Route path="locations" element={<Locations />} />
+              <Route path="locations/:id" element={<Location />} />
+              <Route path="episodes" element={<Episodes />} />
+              <Route path="episodes/:id" element={<Episode />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
