@@ -1,12 +1,12 @@
 import { useCallback, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { LocationProps } from "./types";
-import { useGetNextElements } from "../hooks/useGetNextElements";
+import { EpisodeProps } from "../types";
+import { useGetNextElements } from "../../hooks/useGetNextElements";
 
-export const Locations = () => {
+export const Episodes = () => {
     const [page, setPage] = useState(1);
     const { loading, error, elements, hasMore } = useGetNextElements(
-        "location",
+        "episode",
         page
     );
 
@@ -27,20 +27,21 @@ export const Locations = () => {
 
     return (
         <div>
-            {elements.map((location: LocationProps, index) => {
+            {elements.map((episode: EpisodeProps, index: number) => {
                 if (elements.length === index + 1) {
                     return (
-                        <div key={location.id} ref={lastNodeRef}>
-                            <Link to={`/categories/characters/${location.id}`}>
-                                {location.name}
+                        <div key={episode.id} ref={lastNodeRef}>
+                            <Link to={`/categories/characters/${episode.id}`}>
+                                {episode.name}
                             </Link>
                         </div>
                     );
                 } else {
                     return (
-                        <div key={location.id}>
-                            <Link to={`/categories/locations/${location.id}`}>
-                                {location.name}
+                        <div key={episode.id}>
+                            <span>{episode.episode} </span>
+                            <Link to={`/categories/episodes/${episode.id}`}>
+                                {episode.name}
                             </Link>
                         </div>
                     );

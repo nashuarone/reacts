@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { EpisodeProps } from "../pages/types";
-import { useGetOneElement } from "../hooks/useGetOneElement";
+import { EpisodeProps } from "../../pages/types";
+import { useGetOneElement } from "../../hooks/useGetOneElement";
 
 export const Episode = () => {
     const { id } = useParams();
