@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { LocationProps } from "../pages/types";
-import { useGetOneElement } from "../hooks/useGetOneElement";
+import { LocationProps } from "../../pages/types";
+import { useGetOneElement } from "../../hooks/useGetOneElement";
 
 export const Location = () => {
     const { id } = useParams();

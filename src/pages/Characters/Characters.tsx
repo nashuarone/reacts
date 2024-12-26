@@ -1,12 +1,12 @@
 import { useCallback, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { EpisodeProps } from "./types";
-import { useGetNextElements } from "../hooks/useGetNextElements";
+import { CharacterProps } from "../types";
+import { useGetNextElements } from "../../hooks/useGetNextElements";
 
-export const Episodes = () => {
+export const Characters = () => {
     const [page, setPage] = useState(1);
     const { loading, error, elements, hasMore } = useGetNextElements(
-        "episode",
+        "character",
         page
     );
 
@@ -27,21 +27,20 @@ export const Episodes = () => {
 
     return (
         <div>
-            {elements.map((episode: EpisodeProps, index: number) => {
+            {elements.map((character: CharacterProps, index) => {
                 if (elements.length === index + 1) {
                     return (
-                        <div key={episode.id} ref={lastNodeRef}>
-                            <Link to={`/categories/characters/${episode.id}`}>
-                                {episode.name}
+                        <div key={character.id} ref={lastNodeRef}>
+                            <Link to={`/categories/characters/${character.id}`}>
+                                {character.name}
                             </Link>
                         </div>
                     );
                 } else {
                     return (
-                        <div key={episode.id}>
-                            <span>{episode.episode} </span>
-                            <Link to={`/categories/episodes/${episode.id}`}>
-                                {episode.name}
+                        <div key={character.id}>
+                            <Link to={`/categories/characters/${character.id}`}>
+                                {character.name}
                             </Link>
                         </div>
                     );

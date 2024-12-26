@@ -1,12 +1,12 @@
 import { useCallback, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { CharacterProps } from "./types";
-import { useGetNextElements } from "../hooks/useGetNextElements";
+import { LocationProps } from "../types";
+import { useGetNextElements } from "../../hooks/useGetNextElements";
 
-export const Characters = () => {
+export const Locations = () => {
     const [page, setPage] = useState(1);
     const { loading, error, elements, hasMore } = useGetNextElements(
-        "character",
+        "location",
         page
     );
 
@@ -27,20 +27,20 @@ export const Characters = () => {
 
     return (
         <div>
-            {elements.map((character: CharacterProps, index) => {
+            {elements.map((location: LocationProps, index) => {
                 if (elements.length === index + 1) {
                     return (
-                        <div key={character.id} ref={lastNodeRef}>
-                            <Link to={`/categories/characters/${character.id}`}>
-                                {character.name}
+                        <div key={location.id} ref={lastNodeRef}>
+                            <Link to={`/categories/characters/${location.id}`}>
+                                {location.name}
                             </Link>
                         </div>
                     );
                 } else {
                     return (
-                        <div key={character.id}>
-                            <Link to={`/categories/characters/${character.id}`}>
-                                {character.name}
+                        <div key={location.id}>
+                            <Link to={`/categories/locations/${location.id}`}>
+                                {location.name}
                             </Link>
                         </div>
                     );
