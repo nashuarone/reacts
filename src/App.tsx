@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 import ErrorBoundary from "./ErrorBoundary";
+import { Buffer } from "./pages/Buffer";
 
 const Home = lazy(() => import('./pages/Home').then(module => ({
   default: module.Home
@@ -55,6 +56,9 @@ function App() {
           <li>
             <Link to="/categories">Categories</Link>
           </li>
+          <li>
+            <Link to="/buffer">Buffer</Link>
+          </li>
         </ul>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -76,6 +80,7 @@ function App() {
               <Route path="episodes" element={<Episodes />} />
               <Route path="episodes/:id" element={<Episode />} />
           </Route>
+          <Route path="/buffer" element={<Buffer />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
