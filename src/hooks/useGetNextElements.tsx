@@ -24,6 +24,7 @@ export const useGetNextElements = (path: string, page: number = 0) => {
             },
             cancelToken: new axios.CancelToken(c => cancel = c)
         }).then(res => {
+            // @ts-ignore
             setElements(prevState => {
                 return [...prevState, ...res.data.results]
             })
